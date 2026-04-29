@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Mini BPM Platform - Low-Code Business Process Management
 
 A pragmatic, single-tenant BPM platform MVP inspired by Appian. Features process designer, execution engine, task management, form builder, and rule engine.
@@ -366,3 +367,7 @@ MIT License - See LICENSE file
 ## Architecture Overview
 
 See `docs/ARCHITECTURE.md` for detailed design decisions and component interactions.
+=======
+# mini-bpm-platform
+Lightweight BPM platform inspired by Appian, built with Spring Boot, React and Docker.
+>>>>>>> 6e3bd05c5a788260824136c1d04ed2ab7e3480fa
