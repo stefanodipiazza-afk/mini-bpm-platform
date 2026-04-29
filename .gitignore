@@ -1,0 +1,40 @@
+# Backend
+backend/target/
+backend/.m2/
+backend/.classpath
+backend/.project
+backend/.settings/
+backend/bin/
+
+# Frontend
+frontend/.next/
+frontend/out/
+frontend/node_modules/
+frontend/.cache/
+frontend/dist/
+frontend/tsconfig.tsbuildinfo
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Docker
+.dockerignore
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Database
+*.db
+*.sqlite

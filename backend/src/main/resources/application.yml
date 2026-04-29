@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: mini-bpm-platform
+  datasource:
+    url: jdbc:mysql://mysql:3306/mini_bpm?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+    username: bpm_user
+    password: bpm_password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baselineOnMigrate: true
+  mail:
+    host: mailhog
+    port: 1025
+    username: user
+    password: password
+    properties:
+      mail:
+        smtp:
+          auth: false
+          starttls:
+            enable: false
+
+flowable:
+  asyncExecutor:
+    enabled: true
+    corePoolSize: 2
+    maxPoolSize: 4
+    queueCapacity: 100
+
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+logging:
+  level:
+    root: INFO
+    com.bpm: DEBUG
+    org.flowable: INFO

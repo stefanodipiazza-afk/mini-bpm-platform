@@ -1,0 +1,84 @@
+{
+  "name": "purchase_request_approval",
+  "title": "Purchase Request Approval",
+  "description": "Simple purchase request with approval workflow",
+  "version": 1,
+  "nodes": [
+    {
+      "id": "start",
+      "type": "StartEvent",
+      "label": "Start",
+      "x": 50,
+      "y": 50
+    },
+    {
+      "id": "submit_request",
+      "type": "UserTask",
+      "label": "Submit Purchase Request",
+      "x": 50,
+      "y": 150,
+      "formId": "purchase_request_form"
+    },
+    {
+      "id": "check_amount",
+      "type": "Gateway",
+      "label": "Check Amount",
+      "x": 50,
+      "y": 250,
+      "ruleId": "amount_routing"
+    },
+    {
+      "id": "manager_approval",
+      "type": "UserTask",
+      "label": "Manager Approval",
+      "x": 150,
+      "y": 350,
+      "formId": "approval_form"
+    },
+    {
+      "id": "director_approval",
+      "type": "UserTask",
+      "label": "Director Approval",
+      "x": 300,
+      "y": 350,
+      "formId": "approval_form"
+    },
+    {
+      "id": "approved",
+      "type": "ServiceTask",
+      "label": "Send Approval Email",
+      "x": 200,
+      "y": 450,
+      "serviceType": "email",
+      "config": {"to": "${submitter_email}", "template": "approved"}
+    },
+    {
+      "id": "rejected",
+      "type": "ServiceTask",
+      "label": "Send Rejection Email",
+      "x": 350,
+      "y": 450,
+      "serviceType": "email",
+      "config": {"to": "${submitter_email}", "template": "rejected"}
+    },
+    {
+      "id": "end",
+      "type": "EndEvent",
+      "label": "End",
+      "x": 250,
+      "y": 550
+    }
+  ],
+  "edges": [
+    {"source": "start", "target": "submit_request"},
+    {"source": "submit_request", "target": "check_amount"},
+    {"source": "check_amount", "target": "manager_approval", "label": "Amount <= 500"},
+    {"source": "check_amount", "target": "director_approval", "label": "Amount > 500"},
+    {"source": "manager_approval", "target": "approved", "label": "Approved"},
+    {"source": "manager_approval", "target": "rejected", "label": "Rejected"},
+    {"source": "director_approval", "target": "approved", "label": "Approved"},
+    {"source": "director_approval", "target": "rejected", "label": "Rejected"},
+    {"source": "approved", "target": "end"},
+    {"source": "rejected", "target": "end"}
+  ]
+}
